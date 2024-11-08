@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 輸入，兩個數字、操作符號
+        let num1 = +prompt('輸入第一個數字');
+        let num2 = +prompt('輸入第二個數字');
+        let sp = prompt('請輸入+ - * /，其中一個');
+        let ans;
+
+        switch (sp) {
+            case '+':
+                ans = num1 + num2;
+                alert('計算結果為' + ans)
+                break;
+            case '-':
+                ans = num1 - num2;
+                alert('計算結果為' + ans);
+                break;
+            case '*':
+                ans = num1 *num2;
+                alert('計算結果為' + ans);
+                break;
+            case '/':
+                ans = num1 / num2;
+                alert('計算結果為' + ans);
+                break;
+            default:
+            alert('請根據提示正確輸入');
+        }
+    </script>
+</body>
+
+</html>

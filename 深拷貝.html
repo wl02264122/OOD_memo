@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        let shop = {
+            id: 1,
+            name: 'apple',
+            price: {
+                week: 30,
+                good: {
+                    strong: 99
+                }
+            },
+            color: ['pink', 'red', 'green']
+        }
+        let bought = {}
+        function deepCopy(newObj, oldObj) {
+            for (let i in oldObj) {
+                let item = oldObj[i];
+                // 判斷是否為陣列
+                if (item instanceof Array) {
+                    // 此時i = color
+                    newObj[i] = []; // newObj[color] = [] 相當於給物件創一個空陣列叫做color
+                    deepCopy(newObj[i], item); // 此時調用的是newObj的空陣列，與item也就是oldObj的陣列
+                } else if (item instanceof Object) {   // 判斷是否為對象
+                    newObj[i] = {}; // 創建空物件
+                    deepCopy(newObj[i], item)
+                } else { // 屬性為簡單數據
+                    newObj[i] = item;
+                }
+            }
+        }
+        deepCopy(bought, shop)
+        shop.price.week = 199;
+        shop.color = ['none', 'none', 'none'];
+        console.log(shop);
+        console.log(bought);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [{
+            id: 1,
+            name: '3C',
+            goods: [{
+                id: 11,
+                name: '羅技'
+            }, {
+                id: 12,
+                name: '華碩'
+            }, {
+                id: 13,
+                name: 'SONY'
+            }, {
+                goods: [{
+                    id: 111,
+                    name: 'Apple'
+                }]
+            }]
+        }, {
+            id: 2,
+            name: '運動用品'
+        }]
+        console.log(data);
+        function getID(json, id) {
+            let o = {};
+            json.forEach(function (item) {
+                if (item.id === id) {
+                    o = item;
+                } else if (item.goods && item.goods.length > 0) {  // 外層沒找到就在往內找
+                    o = getID(item.goods, id);  // 遞迴
+                }
+            })
+            return o;
+        }
+        console.log(getID(data, 111));
+    </script>
+</body>

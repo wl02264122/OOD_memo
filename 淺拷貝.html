@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let shop = {
+            id: 1,
+            name: 'apple',
+            price: {
+                week: 30
+            }
+        }
+        let bought = {}
+        // for (const i in shop) {
+        //     bought[i] = shop[i]
+        // }
+        console.log('------------');
+        Object.assign(bought, shop);
+        shop.price.week = 10;
+        console.log(bought);
+        console.log(shop);
+    </script>
+</body>
+
+</html>

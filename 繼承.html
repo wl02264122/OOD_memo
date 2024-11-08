@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // ES5
+        function Father(name, age, sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        function Son(name ,age ,sex){
+            Father.call(this, name ,age ,sex);
+        }
+        Son.prototype = Object.create(Father.prototype);
+        Son.prototype.constructor = Son;
+        const son = new Son('小明', 17, '男性');
+        console.log(son);
+
+
+        // ES6
+        class ClassFather{
+            constructor(name, age, sex){
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+            }
+        }
+        class ClassSon extends Father{
+            constructor(name, age, sex){
+                super(name, age, sex)
+            }
+        }
+        const secSon = new ClassSon('小明', 17, '男性');
+        console.log(secSon);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict'; // 全局開啟嚴格模式
+        const user = {
+            name:'sam'
+        }
+        console.log(user.name);
+    </script>
+    <script>
+        (function (){
+            'use strict'; // 匿名全局執行嚴格模式防止汙染，或是獨立
+        })
+    </script>
+    <script>
+        function fn(){
+            'use strict';
+            // 函式內的代碼將會以嚴格模式進行
+        }
+        function fun(){
+            // 其他函式則不會被影響
+        }
+    </script>
+</body>
+</html>

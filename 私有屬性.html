@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            id: 1,
+            name: 'andy',
+            age: 21
+        }
+        // 透過 definePrototy 實現
+        // keys 獲取物件內"屬性名稱"，返回"陣列"
+        const userArray = Object.keys(user);
+        console.log(userArray); // output : Array(0:"id" 1:"name" 2:"age")
+
+        // defineProperty "新增"、"修改"，物件內的屬性值
+        Object.defineProperty(user, 'money', {
+            value: 9999 // 新增屬性money，值為9999
+        })
+        Object.defineProperty(user, 'id', {
+            value: 'fixed to 4' // 修改屬性id，值為'fixed to 4'
+        })
+        console.log(user);
+
+        // writable 如果為false，不允許修改"屬性值"
+        Object.defineProperty(user, 'sex', {
+            writable: false,
+            value: 'female'
+        })
+
+        // enumerable 如果為false，不允許迭代，預設為false
+        Object.defineProperty(user, 'weight', {
+            value: '55kg',
+            enumerable: true
+        })
+        console.log(user);
+        // 因weight的enumerable被設定為true，所以weight可透過迭代取得
+        // 其餘新增屬性因為enumerable預設為false，所以不可透過迭代取得。
+        console.log(Object.keys(user));
+        console.log(user.sex);  //依然可以透過直接調用取得。
+
+
+        // configurgable 如果為false則無法修改值，預設為true
+        Object.defineProperty(user, 'height', {
+            value: '164.5cm',
+            configurable: false
+        })
+        user.height = '100cm';
+        delete user.height;
+        console.log(user.height);
+
+
+    </script>
+</body>
+
+</html>

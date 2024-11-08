@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 大括號{}，為量詞
+        let regMedium = /^[123]$/;   // 中括號:只能出現裡面其中一個
+        let regMediumLarge = /^[123]{6}$/;  // 中括號+小括號:中括號為總和，大括號內出現的次數只能與中括號相等
+        let regSmall = /^(AB){3}$/;    // 表示優先級
+        console.log(regMedium.test('1'));
+        console.log(regMedium.test('2'));
+        console.log(regMedium.test('12'));
+
+        console.log(regMediumLarge.test('121113'));
+        console.log(regMediumLarge.test('111111'));
+        console.log(regMediumLarge.test('111'));
+
+        console.log(regSmall.test('ABABAB'));
+        console.log(regSmall.test('AB'));
+        console.log(regSmall.test('ABABABAB'));
+    </script>
+</body>
+</html>
