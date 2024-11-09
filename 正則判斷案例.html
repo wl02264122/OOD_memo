@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    input {
+        outline: none;
+        border: 1px solid rgb(174, 174, 174);
+        border-radius: 2px;
+        height: 28px;
+        padding: 0 6px;
+        font-size: 14px;
+    }
+
+    header {
+        width: 100%;
+        min-width: 600px;
+        height: 42px;
+        background-color: brown;
+        margin-bottom: 24px;
+    }
+
+    .container {
+        margin: 0 auto;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .lr-box {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        left: 50px;
+    }
+
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: space-around;
+        margin-right: 4px;
+        gap: 12px;
+        min-width: 100.5px;
+    }
+
+    .left span {
+        color: rgb(62, 62, 62);
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-around;
+        min-width: 547px;
+        gap: 12px;
+    }
+
+    .right .hint {
+        color: #999999;
+    }
+
+    .title {
+        margin: 0;
+        padding: 0;
+        font-size: 42px;
+        margin: 0 auto;
+    }
+</style>
+
+<body>
+    <header></header>
+    <div class="container">
+        <div class="item">
+            <span class="title">
+                註冊頁面
+            </span>
+            <div class="lr-box">
+                <div class="left">
+                    <span>ID:</span>
+                    <span>Email:</span>
+                    <span>行動電話號碼:</span>
+                    <span>密碼:</span>
+                    <span>確認密碼:</span>
+                    <span>輸入驗證碼:</span>
+                </div>
+                <form class="right">
+                    <div class="id">
+                        <input type="text" class="id-value" autocomplete="off">
+                        <span class="hint">使用者名稱，最多24字元</span>
+                        <span class="id-wrong"></span>
+                    </div>
+                    <div class="email">
+                        <input type="text" class="email-value" autocomplete="off">
+                        <span class="hint">ex : example@gmail.com</span>
+                        <span class="email-wrong"></span>
+                    </div>
+                    <div class="phone">
+                        <input type="text" class="phone-value" autocomplete="off">
+                        <span class="hint">ex : 0912345678</span>
+                        <span class="phone-wrong"></span>
+                    </div>
+                    <div class="password">
+                        <input type="password" class="password-value" autocomplete="off">
+                        <span class="hint">6~16位非特殊字元，ex : @Aa123456</span>
+                        <span class="password-wrong"></span>
+                    </div>
+                    <div class="db-password">
+                        <input type="password" class="db-password-value" autocomplete="off">
+                        <span class="hint">必須與密碼一致</span>
+                        <span class="db-password-wrong"></span>
+                    </div>
+                    <div class="captcha">
+                        <input type="text" class="captcha-value">
+                        <span class="captcha-wrong"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            init()
+        }
+        function init() {
+            const phoneReg = /^(09)[0-9]{8}$/
+            const emailReg = /^[^\u4E00-\u9FA5\s@]+@[^\s@]+\.[^s@]+$/
+            const passwordReg = /^[^\s]{6,16}$/
+            const phoneInput = document.querySelector('.phone-value');
+            const phoneWrong = document.querySelector('.phone-wrong');
+            const emailInput = document.querySelector('.email-value');
+            const emailWrong = document.querySelector('.email-wrong');
+            const passwordInput = document.querySelector('.password-value');
+            const passwordWrong = document.querySelector('.password-wrong');
+            const dbPasswordInput = document.querySelector('.db-password-value');
+            const dbPasswordWrong = document.querySelector('.db-password-wrong');
+            // 電話號碼
+            phoneInput.addEventListener('input', () => {
+                if (phoneReg.test(phoneInput.value) != true) {
+                } else {
+                    phoneWrong.innerHTML = '電話號碼格式正確!';
+                    phoneWrong.style.color = "green";
+                }
+            })
+            phoneInput.addEventListener('blur', () => {
+                if (phoneReg.test(phoneInput.value) != true) {
+                    phoneWrong.innerHTML = '電話號碼格式有誤!';
+                    phoneWrong.style.color = "red";
+                } else {
+                    phoneWrong.innerHTML = '電話號碼格式正確!';
+                    phoneWrong.style.color = "green";
+                }
+            })
+            // 電子郵件
+            emailInput.addEventListener('input', () => {
+                if (emailReg.test(emailInput.value) != true) {
+                } else {
+                    emailWrong.innerHTML = '信箱格式正確!';
+                    emailWrong.style.color = "green";
+                }
+            })
+            emailInput.addEventListener('blur', () => {
+                if (emailReg.test(emailInput.value) != true) {
+                    emailWrong.innerHTML = '信箱格式有誤!';
+                    emailWrong.style.color = "red";
+                } else {
+                    emailWrong.innerHTML = '信箱格式正確!';
+                    emailWrong.style.color = "green";
+                }
+            })
+            // 密碼
+            passwordInput.addEventListener('input', () => {
+                if (passwordReg.test(passwordInput.value) != true) {
+                } else {
+                    passwordWrong.innerHTML = '密碼格式正確!';
+                    passwordWrong.style.color = "green";
+                }
+            })
+            passwordInput.addEventListener('blur', () => {
+                if (passwordReg.test(passwordInput.value) != true) {
+                    passwordWrong.innerHTML = '密碼格式有誤!';
+                    passwordWrong.style.color = "red";
+                } else {
+                    passwordWrong.innerHTML = '密碼格式正確!';
+                    passwordWrong.style.color = "green";
+                }
+            })
+            dbPasswordInput.addEventListener('input', () => {
+                if (dbPasswordInput.value == "") {
+                    // 甚麼都不做
+                } else if (dbPasswordInput.value != passwordInput.value) {
+                } else {
+                    dbPasswordWrong.innerHTML = "正確";
+                    dbPasswordWrong.style.color = "green";
+                }
+            })
+            dbPasswordInput.addEventListener('blur', () => {
+                if (dbPasswordInput.value == "") {
+                    // 甚麼都不做
+                } else if (dbPasswordInput.value != passwordInput.value) {
+                    dbPasswordWrong.innerHTML = "與密碼不一致";
+                    dbPasswordWrong.style.color = "red";
+                } else {
+                    dbPasswordWrong.innerHTML = "正確";
+                    dbPasswordWrong.style.color = "greed";
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -9,19 +9,32 @@
     <script>
         // 大括號{}，為量詞
         let regMedium = /^[123]$/;   // 中括號:只能出現裡面其中一個
-        let regMediumLarge = /^[123]{6}$/;  // 中括號+小括號:中括號為總和，大括號內出現的次數只能與中括號相等
+        let regMediumLarge = /^[123]{6}$/;  // 中括號+大括號:中括號為總和，大括號內出現的次數只能與中括號相等
         let regSmall = /^(AB){3}$/;    // 表示優先級
-        console.log(regMedium.test('1'));
-        console.log(regMedium.test('2'));
-        console.log(regMedium.test('12'));
-
-        console.log(regMediumLarge.test('121113'));
-        console.log(regMediumLarge.test('111111'));
-        console.log(regMediumLarge.test('111'));
-
-        console.log(regSmall.test('ABABAB'));
-        console.log(regSmall.test('AB'));
-        console.log(regSmall.test('ABABABAB'));
+        console.log('----------- regMedium -----------');
+        console.log('First regMedium is '+ regMedium.test('1'));
+        console.log('Second regMedium is '+ regMedium.test('2'));
+        console.log('Third regMedium is '+ regMedium.test('12'));
+        console.log('----------- regMediumLarge -----------');
+        console.log('First regMediumLarge is '+ regMediumLarge.test('121113'));
+        console.log('Second regMediumLarge is '+ regMediumLarge.test('111111'));
+        console.log('Third regMediumLarge is '+ regMediumLarge.test('111'));
+        console.log('----------- regSmall -----------');
+        console.log('First regSmall is '+regSmall.test('ABABAB'));
+        console.log('Second regSmall is '+regSmall.test('AB'));
+        console.log('Third regSmall is '+regSmall.test('ABABABAB'));
+        console.log('----------- regReversMedium -----------');
+        let regReversMedium = /^[^123456789]$/; //中括號內以外的值都為true
+        console.log('Revers reg is ' + regReversMedium.test('0'));
+        console.log('Revers reg is ' + regReversMedium.test('9'));
+        console.log('----------- 預定義 -----------');
+        console.log('\\d -> 相當於[0-9]');
+        console.log('\\D -> 相當於[^0-9]');
+        console.log('\\w -> 相當於[A-Za-z0-9]');
+        console.log('\\W -> 相當於[^[A-Za-z0-9]');
+        console.log('\\s -> 相當於[\\t\\r\\n\\v\\f]');
+        console.log('\\S -> 相當於[^\\t\\r\\n\\v\\f]');
+        
     </script>
 </body>
 </html>
